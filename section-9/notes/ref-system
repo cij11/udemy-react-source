@@ -1,0 +1,51 @@
+React refs give access to a single Dom element that is rendered by a component. 
+
+We create refs in the consturcot, assign them to instance variables, then pass to a particular JSX element as props.
+
+In general, we only put data in state if we expect it to change over time. 
+
+Accessing image height:
+
+
+Steps
+
+Let the ImageCard render itself and its image
+Reac into the do to figure out the height of the image
+Set the image height on state to get the component to re-render
+When re-rendering, assign a 'grid-row-end' to make sure the image takes up the appropriate space
+
+
+To create a ref, use the constructor
+
+
+Note: When you expand a dom node, chrome queries it then and there. There is no garauntee that what you see when you expand a node is what the node looked like when you console logged it.
+
+So how do we change 'componentDidMount' so that we only try to access imageRef properties after the image has rendered
+
+1. Create  ref in constructor
+2. assign ref to ref prop in render
+3. Add an event listener with a callback to the imageref in componentDidMount
+4. Set state in the callback
+
+constructor(props) {
+
+  this.imageRef = React.createRef();
+}
+
+componentDidMount() {
+  this.imageRef.current.addEventListener('load', this.setSpans) // Listen for image load.
+  
+}
+
+render() {
+  return (
+    <img ref={this.imageRef}
+  )
+}
+
+setSpans = () => {
+  const height = this.imageRef.current.clientHeight
+  this.setState({
+    height: clientHeight
+  })
+}

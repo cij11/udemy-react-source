@@ -1,0 +1,14 @@
+React-redux lets redux work nicely with react.  
+
+Store
+ - Reducers  -> Provider (wraps app) 
+             -> app
+             -> Connect
+             -> Data from Store
+
+
+So Provider has a reference to the store.
+Provides information to components inside of app
+
+connect subscribes to changes in the store for what is connected.
+

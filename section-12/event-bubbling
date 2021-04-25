@@ -1,0 +1,3 @@
+Events bubble from the most child to the most parent element, and are handled by any element with an event handler on the way.
+
+The exception is event handlers added with .aaddEventHandler, which are always called first.

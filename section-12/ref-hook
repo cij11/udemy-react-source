@@ -1,0 +1,11 @@
+useRef
+
+useRef is the react hook that gives us direct access to dom elements.
+
+const ref = useRef()
+
+<div ref={ref}>
+
+Easy
+
+peasy, lemon squeeeeze

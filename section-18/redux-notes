@@ -1,0 +1,58 @@
+dispatch() comes from the redux library. It is a method on the store.
+We pass an action to dispatch, and it gets handled by the reducers.
+
+
+What is the store?
+The store is something we created using the reducers we wrote. 
+
+we combine the reducers we wrote using combineReducers.
+
+Combine reducers takes an object that maps namespace (key) : reducer (value).  
+
+Our combined reducer is then passed to 
+createdStore(ourCombinedReducers).
+
+We don't technically need 'combinedReducers' to make the store, but this gives us a
+namespace for each reducer which is handy. Otherwise, each reducer
+would need its own way to handle namespacing.
+
+Combine reducers lets us take the simple reducers we made, and wire them up.
+And have properties with key names.  
+
+We pass actions to dispatch. Actions come from the actionCreators.
+
+store.getState() returns all the state in the store.
+
+
+
+Redux Cycle.
+To change state we call an
+ - actionCreator
+
+ This produces an
+  - action
+
+  Which gets fed to 
+   - dispatch function 
+
+Which forwards action to 
+ - reducers
+
+Which creates a new 
+ - state object
+
+
+Why bother?
+
+We will only ever modify state with actions that were created by an 
+action creator.  
+
+We will never modify state directly.  
+
+In a traditional application, as app size increases, complexity
+gets exponentially more complicated.  
+
+In a redux application, we trade off higher initial complexity, with
+gentler, linear increase in complexity over time. 
+People can only alter the state of the application with action creators. 
+This makes the code self documenting. 

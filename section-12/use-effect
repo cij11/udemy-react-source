@@ -1,0 +1,48 @@
+Allows us to detect when a piece of state has changed
+
+
+UseEffect Hook
+
+Allows functions to use something LIKE lifecycle methods
+
+We configure the hook to run some code automatically in one of 3 scenarios
+
+1. When the component is rendered for the first time only.
+
+2. When the component is rendered for the first time, and when the component re-rerenders
+
+3. When the componen is rendered for the first time, and (whenever it re-rereenders plus some piece of data has change)
+
+useEffect takes 2 arguments:
+1. the function that will run
+2. Nothing, or the array that controls behaviour
+
+useEffect( () => {
+  console.log
+}) (empty array, nothing, or array with data)
+
+Second argument controls which of the 3 secnarios we fall into
+
+Empty array: Run at initial render
+
+Nothing: Run at initial render, and every re-render
+
+Array with value: At initial render, and at every re-render if some element in the array has changed since the last render
+
+
+The function you pass into useEffect cannot be async
+3 ways to get around this
+1. Define a helper function inside the use effect function body. Await on this. 
+
+2. Wrap async function in parentheses, then immediately invoke with ()
+
+3. Use normal promises
+axiios.get()
+.then((response => {
+
+}))
+
+
+
+
+UseEffect cleanup function

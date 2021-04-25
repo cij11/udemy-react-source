@@ -1,0 +1,9 @@
+You can define default props on a functional component that are used if a prop is not provided
+
+is.
+
+const Spinner = (props) => { ... }
+
+Spinner.defaultProps = {
+  messageu: 'Loading...'
+}

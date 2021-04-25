@@ -1,0 +1,18 @@
+Only ever have 1 return statement in the render method. 
+
+This is so that if we are going to change our top level element, we only have to change it in one place.
+
+
+
+Class component
+Initialise: state = { activeIndex: 0}
+Reference: this.state.activeIndex
+Update: this.setState({activeIndex : 10})
+
+Functional component
+Initalize: [activeIndex, setActiveIndex] = useState(0)
+Reference: activeIndex
+Update: setActiveIndex(10)
+
+Note that if you have multiple pieces of state, you need to call useState once for each value.
+If you update multiple pieces of state, need to call each setter.

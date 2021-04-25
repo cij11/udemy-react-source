@@ -1,0 +1,4 @@
+When we call setTimout, we get an integer returned
+
+calling clearTimeout(timerId) before the timer has executed will prevent the setTimeout callback from executing.
+

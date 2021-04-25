@@ -1,0 +1,35 @@
+
+
+Time progresses down page
+
+JS file loaded by browser
+App component gets created
+We call geolocation service
+App returns JSX, gets rendered to page as HTML
+...
+...
+We get results of geolocation! _After_ page has loaded.
+
+Without hooks, we need to use a class based component in order to take advantage of state and lifecycle.
+
+
+
+Updated diagram:
+
+JS file loaded by browser
+App component gets created
+We call geolocation service
+App returns JSX, gets rendered to page as HTML
+...
+...
+We get results of geolocation! _After_ page has loaded.
+Tell the component to rerender itself wiht the results of geolocation
+
+
+Rules of Class Components:
+Must be a Javascript classMust extend React.Component
+Must define a 'render' method that returns some amount of JSX
+
+
+Remember, classes are not classical classes. They rely on prototypal inheritance. 
+

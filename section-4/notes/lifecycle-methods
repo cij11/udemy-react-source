@@ -1,0 +1,20 @@
+Component Lifecycle
+
+Constructor
+render
+ - Component visible on screen
+ componentDidMount (place to do initial data loading)
+ - Sit and wait for updates
+ componentDidUpdate (might be a place to do data loading in response to state changing)
+ - Sit amnd wait until this component is no longer shown
+ componentWillUnmount
+
+
+ We could use constructor or componentDidMount to do data loading. 
+ But, standards recommend doing data loading in 'componentDidMount'.
+
+
+Other methods rareky used
+shouldComponentUpdate
+getDerivedStateFromProps
+getSnapshotBeforeUpdate

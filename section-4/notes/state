@@ -1,0 +1,8 @@
+Rules of state
+
+1. Only usable with class componenets   (Technicall, can use with 'hooks' system. To discuss later)
+2. You will confuse props with state :(
+3. 'State' is a JS object that contains data relevant to the componenets
+4. Updating 'State' almost instantly causees a re-render
+5. State must be initialized wihen a component is created
+6. State can ONLY be updated using the function 'setState'

@@ -1,0 +1,39 @@
+React hooks are a way to make state and something like lifecycle methods available inside functional components.
+
+
+const [activeIndex, setActiveIndex] = useState(null)
+
+const onTitleClicke = (index) => {
+  setActiveIndex(index)
+}
+
+return (
+  <div>
+    {activeIndex}
+  <div>
+)
+
+We are using array destructuring to get access to some slements inside an array.
+
+ie. 
+const colors = ['red', 'green']
+const redColor = colors[0]
+const greenColor = colors[1]
+
+vs
+
+const [redColor, greenColor] = colors
+// Get access to the first and second elements of the array, and assign to redColor and greenColor
+
+So...
+
+We're assigning the first and second elements of the useState return array to activeIndex and setActiveIndex.
+Whenever we call useState, we get an array with 2 elements.
+
+The first is allocated to the piece of state when the method runs.
+The second is a function that we call to update that piece of state.
+
+Anytime we update state, the component will re-render.
+
+The argument that we pass to usestate is the initial value.
+

@@ -1,0 +1,13 @@
+JS file loaded by browser
+Instance of App component is created
+App components 'constructor' function gets called
+State object is created and assigned to the 'this.state' property
+We call geolocation service
+React calls the component's render method
+App returns JSX, gets rendered as HTML
+We get result of geolocationWe update our state object with a call to this.setState
+Updating a state property (almost) instantly re-renders the component
+We get the results of geolocation.
+
+
+So, component was actually rendered twice
