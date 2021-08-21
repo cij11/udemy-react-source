@@ -1,15 +1,27 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 const PageOne = () => {
-    return <div>PageOne</div>
+    return (
+        <div>
+            PageOne
+            <Link to="/pagetwo">Navigate to page 2</Link>
+        </div>
+    )
 }
 
 const PageTwo = () => {
-    return <div>PageTwo</div>
+    return (
+        <div>
+            PageTwo
+            <button>Click me</button>
+        </div>
+    )
 }
 
 const App = () => {
+    // Routing rule for none exact: pathFromUrl.contains(path)
+    // Routing rule for exact: pathFromUrl == path
     return (
         <div>
             <BrowserRouter>
