@@ -39,7 +39,7 @@ class GoogleAuth extends React.Component {
         } else if (this.state.isSignedIn) {
             return (
                 <button
-                    onClick={this.onSignOut}
+                    onClick={this.handleSignOut}
                     className="ui red google button"
                 >
                     <i className="google icon" /> Sign Out
@@ -48,7 +48,7 @@ class GoogleAuth extends React.Component {
         } else
             return (
                 <button
-                    onClick={this.onSignIn}
+                    onClick={this.handleSignIn}
                     className="ui red google button"
                 >
                     <i className="google icon" /> Sign in with Google
@@ -56,11 +56,11 @@ class GoogleAuth extends React.Component {
             )
     }
 
-    onSignIn = () => {
+    handleSignIn = () => {
         this.auth.signIn()
     }
 
-    onSignOut = () => {
+    handleSignOut = () => {
         this.auth.signOut()
     }
 }
