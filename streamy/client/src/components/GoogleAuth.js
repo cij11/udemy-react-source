@@ -14,18 +14,19 @@ class GoogleAuth extends React.Component {
                     scope: 'email',
                 })
                 .then(() => {
-                    console.log('then invoked')
-
                     this.auth = window.gapi.auth2.getAuthInstance() // Can now reference auth from anywhere in the class
-
-                    console.log(this.auth)
                     this.setState({
                         isSignedIn: this.auth.isSignedIn.get(),
                     })
+                    this.auth.isSignedIn.listen(this.onAuthChange) // Call onAuthChange every time auth state changes
 
                     // init returns a promise, that we can 'then' on
                 })
         })
+    }
+
+    onAuthChange = () => {
+        this.setState({ isSignedIn: this.auth.isSignedIn.get() })
     }
 
     render() {
