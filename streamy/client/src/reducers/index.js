@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
+import auth from './auth'
 
 export default combineReducers({
-    replaceMe: () => 5, // Dummy reducer while we get things set up
+    auth,
 })
