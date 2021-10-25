@@ -1,5 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { createStream } from '../../actions'
 
 class StreamCreate extends React.Component {
     renderError({ error, touched }) {
@@ -30,6 +32,7 @@ class StreamCreate extends React.Component {
     onSubmit(formValues) {
         // Nice thing about Redux Forms is it gives us a useful formValues argument instead of an event object
         console.log(formValues)
+        this.props.createStream(formValues)
     }
 
     render() {
@@ -69,4 +72,10 @@ const validate = (formValues) => {
     return errors
 }
 
-export default reduxForm({ form: 'streamCreate', validate })(StreamCreate)
+const formWrapped = reduxForm({ form: 'streamCreate', validate })(StreamCreate)
+
+// connect takes:
+// 1. map state to props - function that takes state of the store (and maybe a second argument 'ownProps') and returns map of keys to elements from the store
+// 2. map dispatch to props - object that maps keys to action creators
+// Can then dispatch actions with for example, this.props.createStream(formValues)
+export default connect(null, { createStream })(formWrapped)
