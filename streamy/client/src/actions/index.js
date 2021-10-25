@@ -1,4 +1,12 @@
-import { SIGN_IN, SIGN_OUT } from './types'
+import {
+    SIGN_IN,
+    SIGN_OUT,
+    CREATE_STREAM,
+    FETCH_STREAMS,
+    FETCH_STREAM,
+    EDIT_STREAM,
+    DELETE_STREAM,
+} from './types'
 import streams from '../apis/streams'
 
 export const signIn = (userId) => {
@@ -15,13 +23,40 @@ export const signOut = (userId) => {
     }
 }
 
-export const createStream = (formValues) => {
+export const createStream = (formValues) => async (dispatch) => {
     // asynchronous action creators return arrow functions,
     // that take dispatch as the first argument.
 
     // That way, when we dispatch an action, the middleware can call the function with dispatch, and we can
     // use that dispatch when whatever asynchronous process has returned.
-    return async (dispatch) => {
-        streams.post('/streams', formValues)
-    }
+
+    const response = await streams.post('/streams', formValues)
+
+    dispatch({
+        type: CREATE_STREAM,
+        payload: response.data,
+    })
+}
+
+export const fetchStreams = () => async (dispatch) => {
+    const response = await streams.get('/streams')
+
+    dispatch({ type: FETCH_STREAMS, payload: response.data })
+}
+
+export const fetchStream = (id) => async (dispatch) => {
+    const response = await streams.get(`streams/${id}`)
+
+    dispatch({ type: FETCH_STREAM, payload: response.data })
+}
+
+export const editStream = (id, formValues) => async (dispatch) => {
+    const response = await streams.put(`streams/${id}`, formValues)
+
+    dispatch({ type: FETCH_STREAM, payload: response.data })
+}
+
+export const deleteStream = (id) => async (dispatch) => {
+    await streams.delete(`streams/${id}`)
+    dispatch({ type: DELETE_STREAM, payload: id })
 }

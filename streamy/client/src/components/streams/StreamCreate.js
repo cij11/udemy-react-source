@@ -29,9 +29,8 @@ class StreamCreate extends React.Component {
         // meta.error contains the whatever message is assigned to the field with the same name returned from the validate method
     }
 
-    onSubmit(formValues) {
+    onSubmit = (formValues) => {
         // Nice thing about Redux Forms is it gives us a useful formValues argument instead of an event object
-        console.log(formValues)
         this.props.createStream(formValues)
     }
 
