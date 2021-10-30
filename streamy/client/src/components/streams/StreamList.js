@@ -1,15 +1,38 @@
 import React from 'react'
-import ClassComponentSearch from './ClassComponentSearch'
-import FunctionalComponentSearch from './FunctionalComponentSearch'
+import { connect } from 'react-redux'
+import { fetchStreams } from '../../actions/index'
 
-const StreamList = () => {
-    return (
-        <div>
-            <div>StreamList</div>
-            <ClassComponentSearch label="Class based component" />
-            <FunctionalComponentSearch label="Functional component" />
-        </div>
-    )
+class StreamList extends React.Component {
+    componentDidMount() {
+        this.props.fetchStreams()
+    }
+
+    render() {
+        return (
+            <div>
+                <h2>Streams</h2>
+                <div className="ui celled list">{this.renderList()}</div>
+            </div>
+        )
+    }
+
+    renderList() {
+        return this.props.streams.map((stream) => {
+            return (
+                <div className="item" key={stream.id}>
+                    <i className="large middle aligned icon camera" />
+                    <div className="content">
+                        {stream.title}
+                        <div className="description">{stream.description}</div>
+                    </div>
+                </div>
+            )
+        })
+    }
 }
 
-export default StreamList
+const mapStoreToProps = (store) => {
+    return { streams: Object.values(store.streams) }
+}
+
+export default connect(mapStoreToProps, { fetchStreams })(StreamList)
