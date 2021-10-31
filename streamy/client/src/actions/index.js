@@ -23,14 +23,15 @@ export const signOut = (userId) => {
     }
 }
 
-export const createStream = (formValues) => async (dispatch) => {
+export const createStream = (formValues) => async (dispatch, getState) => {
     // asynchronous action creators return arrow functions,
     // that take dispatch as the first argument.
 
     // That way, when we dispatch an action, the middleware can call the function with dispatch, and we can
     // use that dispatch when whatever asynchronous process has returned.
 
-    const response = await streams.post('/streams', formValues)
+    const { userId } = getState().auth
+    const response = await streams.post('/streams', { ...formValues, userId })
 
     dispatch({
         type: CREATE_STREAM,
@@ -53,7 +54,7 @@ export const fetchStream = (id) => async (dispatch) => {
 export const editStream = (id, formValues) => async (dispatch) => {
     const response = await streams.put(`streams/${id}`, formValues)
 
-    dispatch({ type: FETCH_STREAM, payload: response.data })
+    dispatch({ type: EDIT_STREAM, payload: response.data })
 }
 
 export const deleteStream = (id) => async (dispatch) => {
