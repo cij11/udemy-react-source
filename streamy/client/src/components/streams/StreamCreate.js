@@ -1,80 +1,21 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { createStream } from '../../actions'
+import StreamForm from './StreamForm'
 
 class StreamCreate extends React.Component {
-    renderError({ error, touched }) {
-        if (touched && error) {
-            return (
-                <div className="ui error message">
-                    <div className="header">{error}</div>
-                </div>
-            )
-        }
-    }
-
-    renderInput = ({ input, label, meta }) => {
-        const className = `field ${meta.error && meta.touched ? 'error' : ''}`
-        // ^^ Destructure input out of formProps
-        return (
-            <div className={className}>
-                <label>{label}</label>
-                <input {...input} autoComplete="off" />
-                {this.renderError(meta)}
-            </div>
-        ) // Always assign value and onChange when doing input in react/redux
-        // Note that we're using the spread operator to assign value={formProps.input.value} and onChange={formProps.input.onChange}
-
-        // meta.error contains the whatever message is assigned to the field with the same name returned from the validate method
-    }
-
-    onSubmit = (formValues) => {
-        // Nice thing about Redux Forms is it gives us a useful formValues argument instead of an event object
+    handleSubmit = (formValues) => {
         this.props.createStream(formValues)
     }
 
     render() {
-        // When we add props to Fields that redux forms doens't know about (i.e, 'label'), then
-        // redux forms will pass this a field of the argument to renderInput
         return (
-            <form
-                onSubmit={this.props.handleSubmit(this.onSubmit)}
-                className="ui form error"
-            >
-                <Field
-                    name="title"
-                    component={this.renderInput}
-                    label="Enter Title"
-                />
-                <Field
-                    name="description"
-                    component={this.renderInput}
-                    label="Enter Description"
-                />
-                <button className="ui button primary">Submit</button>
-            </form>
+            <div>
+                <h3>Create a Stream</h3>
+                <StreamForm onSubmit={this.handleSubmit} />
+            </div>
         )
     }
 }
 
-const validate = (formValues) => {
-    const errors = {}
-    if (!formValues.title) {
-        errors.title = 'Require a title'
-    }
-
-    if (!formValues.description) {
-        errors.description = 'Require a description'
-    }
-
-    return errors
-}
-
-const formWrapped = reduxForm({ form: 'streamCreate', validate })(StreamCreate)
-
-// connect takes:
-// 1. map state to props - function that takes state of the store (and maybe a second argument 'ownProps') and returns map of keys to elements from the store
-// 2. map dispatch to props - object that maps keys to action creators
-// Can then dispatch actions with for example, this.props.createStream(formValues)
-export default connect(null, { createStream })(formWrapped)
+export default connect(null, { createStream })(StreamCreate)
