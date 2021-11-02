@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom' // Note. Importing this even though this isn't the root component, because now we're thinking with portals.
-import history from '../history'
 
 const Modal = (props) => {
     // Returns from portals are a little different
@@ -8,7 +7,7 @@ const Modal = (props) => {
     // 2nd arg is the id of element that will be the parent
     return ReactDOM.createPortal(
         <div
-            onClick={() => history.push('/')}
+            onClick={props.onDismiss}
             className="ui dimmer modals visible active"
         >
             <div
@@ -18,14 +17,9 @@ const Modal = (props) => {
                 }}
                 className="ui standard modal visible active"
             >
-                <div className="header">Delete Stream</div>
-                <div className="content">
-                    Are you sure you want to delete this stream?
-                </div>
-                <div className="actions">
-                    <button className="ui primary button">Delete</button>
-                    <button className="ui button">Cancel</button>
-                </div>
+                <div className="header">{props.title}</div>
+                <div className="content">{props.content}</div>
+                <div className="actions">{props.actions}</div>
             </div>
         </div>,
         document.querySelector('#modal')
