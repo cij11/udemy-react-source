@@ -22,6 +22,12 @@ class StreamShow extends React.Component {
         this.buildPlayer()
     }
 
+    componentWillUnmount() {
+        if (!!this.player) {
+            this.player.destroy()
+        }
+    }
+
     buildPlayer() {
         const { id } = this.props.match.params
 

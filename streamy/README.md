@@ -1,6 +1,6 @@
 Streaming to this site requires OBS streaming software.
 
-OBS streams to a realtime node media server on port
+OBS streams to a realtime node media server on port 1935 (I think)
 
 The client then reads the stream from the server on port 8000
 
