@@ -30,3 +30,7 @@ class App extends React.Component {
 }
 
 export default App
+
+// Two ways to get information into context pipe
+
+// Two ways to get information out of context pipe
