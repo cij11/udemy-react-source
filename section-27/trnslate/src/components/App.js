@@ -1,6 +1,7 @@
 import React from 'react'
 import UserCreate from './UserCreate'
 import LanguageContext from '../context/LanguageContext'
+import ColorContext from '../context/ColorContext'
 
 class App extends React.Component {
     state = { language: 'english' }
@@ -32,9 +33,11 @@ class App extends React.Component {
                     // with its own value. You cannot share context between Providers of the same contextType
                     // just by wrapping multiple sibling/disjoint elements with the same context type.
                 }
-                <LanguageContext.Provider value={this.state.language}>
-                    <UserCreate />
-                </LanguageContext.Provider>
+                <ColorContext.Provider value={'red'}>
+                    <LanguageContext.Provider value={this.state.language}>
+                        <UserCreate />
+                    </LanguageContext.Provider>
+                </ColorContext.Provider>
             </div>
         )
     }
